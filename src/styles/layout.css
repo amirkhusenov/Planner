@@ -1,0 +1,127 @@
+﻿.planner-root {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  min-height: 100vh;
+  border: 1px solid var(--line-soft);
+}
+
+.planner-content {
+  border-left: none;
+}
+
+.planner-mobile-top {
+  display: none;
+}
+
+.planner-content__actions {
+  margin-top: 32px;
+  margin-left: 68px;
+  margin-right: 24px;
+}
+
+.planner-content__actions .button {
+  width: auto;
+  justify-content: center;
+}
+
+.completed-tasks {
+  margin-top: 100px;
+}
+
+.completed-tasks__title {
+  margin: 0 0 28px 68px;
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.about-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.about-card {
+  width: min(680px, calc(100% - 32px));
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-1);
+  padding: 24px;
+}
+
+@media (max-width: 1279px) {
+  .right-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .planner-root {
+    grid-template-columns: 1fr;
+  }
+
+  .planner-content {
+    padding-bottom: 76px;
+  }
+}
+
+@media (max-width: 980px) {
+  .planner-root {
+    grid-template-columns: 1fr;
+  }
+
+  .planner-content {
+    border-left: none;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .right-sidebar {
+    display: none;
+  }
+
+  .planner-content__actions {
+    margin-top: 32px;
+    margin-left: 34px;
+    margin-right: 34px;
+  }
+}
+
+@media (max-width: 578px) {
+
+  .planner-root {
+    border: 0;
+  }
+
+  .planner-mobile-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .planner-mobile-top__brand {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1;
+    color: #fff;
+  }
+
+  .planner-mobile-top__profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .planner-content__actions {
+    margin: 24px 16px 0;
+  }
+
+  .planner-content__actions .button {
+    width: 100%;
+  }
+
+  .completed-tasks {
+    display: none;
+  }
+}

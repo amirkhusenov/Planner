@@ -1,0 +1,43 @@
+﻿.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111317;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  padding: 9.5px 21.5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.92;
+}
+
+.button--ghost {
+  background: var(--bg-2);
+  color: var(--text-soft);
+}
+
+.button__icon {
+  display: inline-flex;
+}
+
+.icon-button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-soft);
+  border-radius: 5px;
+  min-width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.icon-button--small {
+  min-width: 20px;
+  height: 20px;
+  font-size: 10px;
+}

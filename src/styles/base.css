@@ -1,0 +1,46 @@
+﻿@import "@fontsource/geist-sans/400.css";
+@import "@fontsource/geist-sans/500.css";
+@import "@fontsource/geist-sans/600.css";
+@import "@fontsource/geist-sans/700.css";
+@import "@fontsource/geist-sans/800.css";
+
+:root {
+  color-scheme: dark;
+  --bg: #0A0A0A;
+  --line: #22262d;
+  --line-soft: #1b1f26;
+  --text: #f2f4f7;
+  --text-soft: #aeb4be;
+  --accent: #f29f3a;
+  --accent-soft: #4a3318;
+  --ok: #4bb26a;
+  --low: #717171;
+  --warn: #B86F2F;
+  --danger: #B82F2F;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Geist Sans", "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
