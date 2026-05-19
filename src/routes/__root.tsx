@@ -1,8 +1,10 @@
-﻿import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+﻿import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
+import AppLoadingGate from '../components/layout/AppLoadingGate'
 
 import appCss from '../styles/index.css?url'
 
 export const Route = createRootRoute({
+  component: RootLayout,
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
@@ -13,6 +15,14 @@ export const Route = createRootRoute({
   }),
   shellComponent: RootDocument,
 })
+
+function RootLayout() {
+  return (
+    <AppLoadingGate>
+      <Outlet />
+    </AppLoadingGate>
+  )
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
@@ -27,4 +37,3 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     </html>
   )
 }
-

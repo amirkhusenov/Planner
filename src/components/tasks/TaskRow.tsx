@@ -1,8 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+﻿import type { DraggableAttributes, SyntheticListenerMap } from '@dnd-kit/core'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { ICON_PATHS } from '../../constants/iconPaths'
 import type { Task } from '../../types/task'
 import PriorityBadge from './PriorityBadge'
 import StatusBadge from './StatusBadge'
+import TaskCommentThreadDesktop from './TaskCommentThreadDesktop'
+import TaskCommentThreadMobile from './TaskCommentThreadMobile'
+import type { ThreadComment } from './taskCommentTypes'
 
 interface TaskRowProps {
   task: Task
@@ -10,14 +14,14 @@ interface TaskRowProps {
   isCommentOpen: boolean
   onToggleComment: () => void
   onCloseComment: () => void
-}
-
-interface ThreadComment {
-  id: string
-  author: string
-  time: string
-  text: string
-  imageUrl?: string
+  onToggleTaskState?: () => void
+  isDragging?: boolean
+  isDragOver?: boolean
+  rowRef?: (element: HTMLElement | null) => void
+  rowStyle?: CSSProperties
+  dragAttributes?: DraggableAttributes
+  dragListeners?: SyntheticListenerMap
+  dragHandleRef?: (element: HTMLElement | null) => void
 }
 
 function createCommentId() {
@@ -28,12 +32,30 @@ function formatNow() {
   return 'Только что'
 }
 
-function isUrlLine(line: string) {
-  return /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/.*)?$/i.test(line.trim())
-}
+function useIsMobileCommentThread() {
+  const [isMobile, setIsMobile] = useState<boolean>(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 578px)').matches : false,
+  )
 
-function toHref(line: string) {
-  return line.startsWith('http://') || line.startsWith('https://') ? line : `https://${line}`
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const mediaQuery = window.matchMedia('(max-width: 578px)')
+    const handleChange = () => {
+      setIsMobile(mediaQuery.matches)
+    }
+
+    handleChange()
+    mediaQuery.addEventListener('change', handleChange)
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange)
+    }
+  }, [])
+
+  return isMobile
 }
 
 export default function TaskRow({
@@ -42,6 +64,14 @@ export default function TaskRow({
   isCommentOpen,
   onToggleComment,
   onCloseComment,
+  onToggleTaskState,
+  isDragging = false,
+  isDragOver = false,
+  rowRef,
+  rowStyle,
+  dragAttributes,
+  dragListeners,
+  dragHandleRef,
 }: TaskRowProps) {
   const [commentDraft, setCommentDraft] = useState('')
   const [pendingImageUrl, setPendingImageUrl] = useState<string | null>(null)
@@ -51,6 +81,8 @@ export default function TaskRow({
   const pendingImageObjectUrlRef = useRef<string | null>(null)
 
   const hasThread = threadComments.length > 0
+  const isCommentInlineOpen = isCommentOpen && !hasThread
+  const isMobileCommentThread = useIsMobileCommentThread()
 
   const handleSubmitComment = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -105,7 +137,11 @@ export default function TaskRow({
   }, [])
 
   return (
-    <article className={`task-row${isCommentOpen ? ' is-comment-open' : ''}${isCompleted ? ' is-completed' : ''}`}>
+    <article
+      ref={rowRef}
+      style={rowStyle}
+      className={`task-row${isCommentInlineOpen ? ' is-comment-open' : ''}${isCompleted ? ' is-completed' : ''}${isDragging ? ' is-dragging' : ''}${isDragOver ? ' is-drag-over' : ''}`}
+    >
       <input
         ref={fileInputRef}
         className="task-row__file-input"
@@ -113,20 +149,29 @@ export default function TaskRow({
         accept="image/*"
         onChange={handleFileChange}
       />
-      <button className="task-row__drag" type="button" aria-label="Переместить задачу">
+      <button
+        className="task-row__drag"
+        type="button"
+        ref={dragHandleRef}
+        {...dragAttributes}
+        {...dragListeners}
+        aria-label="Переместить задачу"
+      >
         <img src={ICON_PATHS.tasks.drag} alt="" aria-hidden="true" />
       </button>
-      <div className="task-row__priority">
-        <PriorityBadge priority={task.priority} />
+      <div className="task-row__badges">
+        <div className="task-row__priority">
+          <PriorityBadge priority={task.priority} />
+        </div>
+        <div className="task-row__status-wrap">
+          <StatusBadge status={task.status} />
+        </div>
       </div>
       <p className="task-row__title">{task.title}</p>
       <p className="task-row__time">
         <img src={ICON_PATHS.tasks.calendar} alt="" aria-hidden="true" className="task-row__time-icon" />
         <span>{task.timeRange}</span>
       </p>
-      <div className="task-row__status-wrap">
-        <StatusBadge status={task.status} />
-      </div>
       <button
         className="task-row__actions"
         type="button"
@@ -137,11 +182,20 @@ export default function TaskRow({
         <img src={ICON_PATHS.tasks.message} alt="" aria-hidden="true" className="task-row__action-icon" />
         <span className="task-row__action-count">{threadComments.length}</span>
       </button>
-      <button className="task-row__delete" type="button" aria-label="Удалить задачу">
+      <button
+        className="task-row__delete"
+        type="button"
+        aria-label={
+          isCompleted
+            ? 'Восстановить задачу'
+            : 'Удалить задачу'
+        }
+        onClick={onToggleTaskState}
+      >
         <img src={isCompleted ? ICON_PATHS.tasks.return : ICON_PATHS.tasks.delete} alt="" aria-hidden="true" />
       </button>
 
-      {isCommentOpen && !hasThread ? (
+      {isCommentInlineOpen ? (
         <form className="task-row__comment-box" onSubmit={handleSubmitComment}>
           <input
             className="task-row__comment-input"
@@ -157,10 +211,20 @@ export default function TaskRow({
             autoFocus
           />
           <div className="task-row__comment-tools">
-            <button className="task-row__comment-tool" type="button" aria-label="Прикрепить файл" onClick={handlePickImage}>
+            <button
+              className="task-row__comment-tool"
+              type="button"
+              aria-label="Прикрепить файл"
+              onClick={handlePickImage}
+            >
               <img src={ICON_PATHS.tasks.attach} alt="" aria-hidden="true" />
             </button>
-            <button className="task-row__comment-tool" type="submit" aria-label="Отправить комментарий" disabled={isImageProcessing}>
+            <button
+              className="task-row__comment-tool"
+              type="submit"
+              aria-label="Отправить комментарий"
+              disabled={isImageProcessing}
+            >
               <img src={ICON_PATHS.tasks.send} alt="" aria-hidden="true" />
             </button>
           </div>
@@ -168,82 +232,27 @@ export default function TaskRow({
       ) : null}
 
       {isCommentOpen && hasThread ? (
-        <section className="task-comment-thread" aria-label="Комментарии">
-          <div className="task-comment-thread__list">
-            {threadComments.map((item) => (
-              <article key={item.id} className="task-comment-thread__item">
-                <div className="task-comment-thread__head">
-                  <div className="task-comment-thread__author-block">
-                    <span className="task-comment-thread__avatar">И</span>
-                    <div className="task-comment-thread__meta">
-                      <p className="task-comment-thread__author">{item.author}</p>
-                      <p className="task-comment-thread__time">{item.time}</p>
-                    </div>
-                  </div>
-                  <button className="task-comment-thread__more" type="button" aria-label="Действия">
-                    <img src={ICON_PATHS.tasks.menu} alt="" aria-hidden="true" />
-                  </button>
-                </div>
-
-                {item.text ? (
-                  <div className="task-comment-thread__text">
-                    {item.text.split(/\r?\n/).map((line, index) => {
-                      const trimmed = line.trim()
-                      if (!trimmed) {
-                        return null
-                      }
-
-                      if (isUrlLine(trimmed)) {
-                        return (
-                          <a
-                            key={`${item.id}-line-${index}`}
-                            className="task-comment-thread__link"
-                            href={toHref(trimmed)}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            {trimmed}
-                          </a>
-                        )
-                      }
-
-                      return <p key={`${item.id}-line-${index}`}>{line}</p>
-                    })}
-                  </div>
-                ) : null}
-
-                {item.imageUrl ? (
-                  <img className="task-comment-thread__image-upload" src={item.imageUrl} alt="Прикрепленное изображение" />
-                ) : null}
-              </article>
-            ))}
-          </div>
-
-          <form className="task-comment-thread__composer-wrap" onSubmit={handleSubmitComment}>
-            <div className="task-comment-thread__composer">
-              <input
-                className="task-row__comment-input"
-                type="text"
-                placeholder="Добавить комментарий..."
-                value={commentDraft}
-                onChange={(event) => setCommentDraft(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Escape') {
-                    onCloseComment()
-                  }
-                }}
-              />
-              <div className="task-row__comment-tools">
-                <button className="task-row__comment-tool" type="button" aria-label="Прикрепить файл" onClick={handlePickImage}>
-                  <img src={ICON_PATHS.tasks.attach} alt="" aria-hidden="true" />
-                </button>
-                <button className="task-row__comment-tool" type="submit" aria-label="Отправить комментарий" disabled={isImageProcessing}>
-                  <img src={ICON_PATHS.tasks.send} alt="" aria-hidden="true" />
-                </button>
-              </div>
-            </div>
-          </form>
-        </section>
+        isMobileCommentThread ? (
+          <TaskCommentThreadMobile
+            comments={threadComments}
+            commentDraft={commentDraft}
+            isImageProcessing={isImageProcessing}
+            onCommentDraftChange={setCommentDraft}
+            onCloseComment={onCloseComment}
+            onPickImage={handlePickImage}
+            onSubmitComment={handleSubmitComment}
+          />
+        ) : (
+          <TaskCommentThreadDesktop
+            comments={threadComments}
+            commentDraft={commentDraft}
+            isImageProcessing={isImageProcessing}
+            onCommentDraftChange={setCommentDraft}
+            onCloseComment={onCloseComment}
+            onPickImage={handlePickImage}
+            onSubmitComment={handleSubmitComment}
+          />
+        )
       ) : null}
     </article>
   )

@@ -60,12 +60,5 @@ export const COMPLETED_TASKS: Task[] = [
     timeRange: '11:00 - 12:00',
     status: 'done',
   },
-  {
-    id: 'completed-3',
-    title: 'Купить корм для кота',
-    priority: 'medium',
-    timeRange: '11:00 - 12:00',
-    status: 'done',
-  },
 ]
 

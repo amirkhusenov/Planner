@@ -1,4 +1,4 @@
-﻿@import "@fontsource/geist-sans/400.css";
+@import "@fontsource/geist-sans/400.css";
 @import "@fontsource/geist-sans/500.css";
 @import "@fontsource/geist-sans/600.css";
 @import "@fontsource/geist-sans/700.css";
@@ -17,6 +17,40 @@
   --low: #717171;
   --warn: #B86F2F;
   --danger: #B82F2F;
+  --white: #ffffff;
+  --white-soft: #fff;
+  --white-10: #ffffff1a;
+  --white-20: #ffffff33;
+  --white-30: #ffffff4d;
+  --white-rgb-30: rgba(255, 255, 255, 0.3);
+  --white-rgb-35: rgba(255, 255, 255, 0.35);
+  --black: #0a0a0a;
+  --bg-deep: #101216;
+  --bg-1: #111315;
+  --bg-2: #141414;
+  --bg-3: #1a1a1a;
+  --bg-4: #1b1d21;
+  --bg-5: #20242b;
+  --bg-6: #212121;
+  --bg-7: #2c2c2c;
+  --surface-ink: #111;
+  --surface-ink-soft: #111317;
+  --text-ink: #060606;
+  --line-muted: #1f242c;
+  --line-weak: #23262d;
+  --line-strong: #2a2f37;
+  --blue-900: #131f69;
+  --blue-700: #1e4cb2;
+  --blue-300: #80c7ff;
+  --blue-100: #d8efff;
+  --neutral-500: #545a64;
+  --neutral-450: #6c727c;
+  --neutral-400: #808792;
+  --neutral-100: #d9dce3;
+  --text-bright: #f3f5f8;
+  --text-bright-soft: #f4f5f7;
+  --overlay-dark: rgba(10, 10, 10, 0.45);
+  --overlay-blue-clear: rgba(216, 239, 255, 0);
 }
 
 * {
@@ -44,3 +78,4 @@ h3,
 p {
   margin: 0;
 }
+

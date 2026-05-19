@@ -1,0 +1,417 @@
+.statistics-content {
+  overflow-x: hidden;
+}
+
+.statistics-page {
+  padding: 48px 68px 0 68px;
+}
+
+.statistics-page__title {
+  margin: 0;
+  color: var(--white-soft);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.02;
+}
+
+.statistics-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2.08fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.statistics-left-stack,
+.statistics-progress-stack,
+.statistics-side-stack {
+  display: grid;
+  gap: 20px;
+}
+
+.statistics-side-stack {
+  grid-template-rows: auto 1fr;
+  min-height: 0;
+}
+
+.statistics-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.statistics-card {
+  border-radius: 16px;
+  background: var(--bg-2);
+  padding: 25px 20px;
+}
+
+.statistics-card__label {
+  margin: 0;
+  color: var(--low);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.statistics-card__value {
+  margin: 10px 0 0;
+  color: var(--white-soft);
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.statistics-card--mini {
+  min-height: 78px;
+}
+
+.statistics-card--mini .statistics-card__value {
+  margin-top: 8px;
+  font-size: 36px;
+}
+
+.statistics-progress-card {
+  min-height: 74px;
+}
+
+.statistics-progress-card__head {
+  margin-top: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.statistics-progress-card__value {
+  margin: 0;
+  color: var(--white-soft);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.statistics-progress-card__ratio {
+  margin: 0;
+  color: var(--low);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.statistics-progress-card__track {
+  margin-top: 32px;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--black);
+  overflow: hidden;
+}
+
+.statistics-progress-card__fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--warn);
+}
+
+
+.statistics-goal-card__value {
+  margin: 8px 0 0;
+  color: var(--white-soft);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.statistics-goal-card__muted {
+  color: var(--low);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.statistics-goal-card__ring {
+  width: 228px;
+  height: 228px;
+  margin: 10px auto 0;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.statistics-goal-card__ring-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.statistics-goal-card__ring-track,
+.statistics-goal-card__ring-progress {
+  fill: none;
+  stroke-width: 28px;
+}
+
+.statistics-goal-card__ring-track {
+  stroke: var(--black);
+}
+
+.statistics-goal-card__ring-progress {
+  stroke: var(--warn);
+  stroke-linecap: round;
+}
+
+.statistics-goal-card__ring-inner {
+  width: 126px;
+  height: 126px;
+  border-radius: 50%;
+  background: var(--bg-2);
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.statistics-goal-card__ring-top {
+  margin: 0;
+  color: var(--low);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.statistics-goal-card__ring-value {
+  margin: 4px 0 0;
+  color: var(--white-soft);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.statistics-days-card {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.statistics-days-card__value {
+  margin: 8px 0 0;
+  color: var(--white-soft);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.statistics-days-card__muted {
+  color: var(--white-soft);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.statistics-days-card__date {
+  margin: auto 0 0;
+  color: var(--low);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.statistics-chart-card {
+  min-height: 362px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+}
+
+.statistics-chart-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.statistics-chart-card__headline {
+  min-width: 0;
+}
+
+.statistics-chart-card__value {
+  margin: 8px 0 0;
+  color: var(--white-soft);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.statistics-chart-card__value-muted {
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.statistics-chart-card__tabs .segmented-control__item {
+  padding: 5px 10px;
+}
+
+.statistics-chart-card__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 100%;
+}
+
+.statistics-chart-card__bars--week {
+  gap: 14px;
+}
+
+.statistics-chart-card__bars--year {
+  gap: 10px;
+}
+
+.statistics-chart-card__bar-wrap {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.statistics-chart-card__bar-hit {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+
+.statistics-chart-card__bar-hit:focus-visible {
+  outline: 1px solid var(--white-rgb-35);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.statistics-chart-card__bar {
+  width: 100%;
+  height: 100%;
+  min-height: 10px;
+  border-radius: 3px;
+  background: var(--warn);
+  transition: all 0.1s ease-out;
+}
+
+.statistics-chart-card__bar-hit:hover .statistics-chart-card__bar,
+.statistics-chart-card__bar-hit:focus-visible .statistics-chart-card__bar {
+  background: #212121;
+}
+
+.statistics-chart-card__tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 8;
+  border-radius: 14px;
+  background: var(--bg-6);
+  padding: 8px 10px;
+  min-width: 86px;
+  width: max-content;
+  display: grid;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.statistics-chart-card__tooltip-label {
+  margin: 0;
+  color: var(--low);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.statistics-chart-card__tooltip-value {
+  margin: 0;
+  color: var(--white-soft);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+@media (max-width: 1280px) {
+  .statistics-page {
+    padding: 14px 16px 32px;
+  }
+
+  .statistics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .statistics-chart-card {
+    grid-column: 1 / -1;
+    min-height: 360px;
+  }
+
+  .statistics-page__title {
+    font-size: 44px;
+  }
+}
+
+@media (max-width: 960px) {
+  .statistics-page {
+    padding: 20px 16px 96px;
+  }
+
+  .statistics-page__title {
+    font-size: 40px;
+  }
+
+  .statistics-card,
+  .statistics-chart-card {
+    padding: 12px;
+  }
+
+  .statistics-card__value,
+  .statistics-progress-card__value,
+  .statistics-goal-card__value,
+  .statistics-days-card__value,
+  .statistics-chart-card__value {
+    font-size: 38px;
+  }
+
+  .statistics-chart-card__value-muted,
+  .statistics-days-card__muted {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .statistics-page__title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 578px) {
+  .statistics-page {
+    padding: 14px 16px 96px;
+  }
+
+  .statistics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .statistics-mini-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .statistics-chart-card {
+    grid-column: auto;
+    min-height: 320px;
+  }
+
+  .statistics-page__title {
+    font-size: 34px;
+  }
+}

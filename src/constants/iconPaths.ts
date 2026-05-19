@@ -20,5 +20,13 @@
   },
   common: {
     arrow: '/icons/common/arrow.svg',
+    camera: '/icons/common/Camera.svg',
+    exit: '/icons/common/Exit.svg',
+  },
+  settings: {
+    profile: '/icons/settings/Profile.svg',
+    setting: '/icons/settings/Setting.svg',
+    exit: '/icons/settings/Exit.svg',
+    check: '/icons/settings/Check.svg',
   },
 } as const

@@ -1,11 +1,11 @@
-﻿.button {
+.button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #ffffff;
-  color: #111317;
+  background: var(--white);
+  color: var(--surface-ink-soft);
   font-size: 15px;
   font-weight: 500;
   line-height: 1;

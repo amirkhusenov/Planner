@@ -1,0 +1,134 @@
+.settings-page {
+  padding: 60px;
+}
+
+.settings-page__title {
+  color: var(--white-soft);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.settings-groups {
+  margin-top: 40px;
+  display: grid;
+  gap: 60px;
+}
+
+.settings-group__title {
+  color: var(--white-soft);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.settings-group__rows {
+  margin-top: 16px;
+  border-top: 1px solid var(--white-10);
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--white-10);
+}
+
+.settings-row__left {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.settings-row__label {
+  color: var(--white-soft);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.settings-row__note {
+  color: var(--low);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.settings-row__right {
+  flex: 0 0 auto;
+  min-width: max-content;
+}
+
+.settings-value {
+  color: var(--white-soft);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.settings-select-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--white-soft);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.settings-select-value img {
+
+  transform: rotate(-180deg);
+}
+
+.settings-color-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--warn);
+}
+
+.settings-danger-button {
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--danger);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .settings-page {
+    padding: 32px 34px 100px;
+  }
+}
+
+@media (max-width: 578px) {
+  .settings-page {
+    padding: 24px 16px 100px;
+  }
+
+  .settings-groups {
+    margin-top: 28px;
+    gap: 40px;
+  }
+
+  .settings-group__title {
+    font-size: 20px;
+  }
+
+  .settings-row {
+    align-items: flex-start;
+  }
+
+  .settings-row__right {
+    max-width: 48%;
+    min-width: 0;
+  }
+}
+

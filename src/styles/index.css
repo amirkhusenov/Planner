@@ -1,7 +1,12 @@
-﻿@import './base.css';
+@import './base.css';
 @import './layout.css';
-@import './buttons.css';
+@import './components.css';
 @import './forms.css';
 @import './tasks.css';
+@import './activity.css';
+@import './goals.css';
+@import './settings.css';
 @import './sidebar.css';
+@import './statistics.css';
+
 
