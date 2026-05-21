@@ -12,7 +12,7 @@
 }
 
 .tasks-header__title-muted {
-  color: var(--white-30);
+  color: var(--overlay-light-30);
 }
 
 .weekly-tasks {
@@ -34,12 +34,12 @@
 }
 
 .weekly-task-card:hover {
-  border: 1px solid var(--white);
+  border: 1px solid var(--text-contrast);
 }
 
 .weekly-task-card__day {
   margin: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 700;
   line-height: 1.2;
@@ -47,7 +47,7 @@
 
 .weekly-task-card__meta {
   margin: 12px 0 0;
-  color: var(--low);
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.2;
@@ -66,7 +66,7 @@
   display: block;
   height: 100%;
   border-radius: 999px;
-  background: var(--warn);
+  background: var(--state-warning);
 }
 
 .monthly-tasks {
@@ -88,12 +88,12 @@
 }
 
 .monthly-task-card:hover {
-  border: 1px solid var(--white);
+  border: 1px solid var(--text-contrast);
 }
 
 .monthly-task-card__day {
   margin: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 13px;
   font-weight: 400;
   line-height: 1.2;
@@ -101,7 +101,7 @@
 
 .monthly-task-card__meta {
   margin: 12px 0 0;
-  color: var(--low);
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.2;
@@ -120,7 +120,7 @@
   display: block;
   height: 100%;
   border-radius: 999px;
-  background: var(--warn);
+  background: var(--state-warning);
 }
 
 .tasks-header__controls {
@@ -139,7 +139,7 @@
   border: 0;
   background: transparent;
   padding: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
   line-height: 1;
@@ -153,7 +153,7 @@
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--bg-6);
-  color: var(--text-bright);
+  color: var(--text-emphasis);
   font-size: 34px;
   line-height: 1;
   display: inline-flex;
@@ -220,7 +220,7 @@
   margin: 0;
   font-size: 15px;
   font-weight: 500;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   line-height: 1;
 }
 
@@ -282,7 +282,7 @@
 .shadcn-calendar__weekday {
   padding: 0;
   text-align: center;
-  color: var(--low);
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 400;
   line-height: 1;
@@ -305,7 +305,7 @@
   border: 0;
   border-radius: 8px;
   background: transparent;
-  color: var(--text-bright-soft);
+  color: var(--text-emphasis-soft);
   font-size: 16px;
   font-weight: 400;
   line-height: 40px;
@@ -316,11 +316,11 @@
 
 .shadcn-calendar__day.is-selected .shadcn-calendar__day-button {
   background: var(--bg-7);
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
 }
 
 .shadcn-calendar__day.is-outside .shadcn-calendar__day-button {
-  color: var(--neutral-500);
+  color: var(--text-neutral-500);
 }
 
 .shadcn-calendar__day.is-hidden {
@@ -435,7 +435,7 @@
   grid-row: 1;
   font-size: 15px;
   font-weight: 700;
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 .task-row__time {
@@ -444,7 +444,7 @@
   gap: 8px;
   font-size: 15px;
   font-weight: 400;
-  color: var(--low);
+  color: var(--text-muted);
   justify-self: start;
   grid-column: 5;
   grid-row: 1;
@@ -479,7 +479,7 @@
 }
 
 .task-row__actions[aria-expanded="true"] {
-  border-color: var(--white-soft);
+  border-color: var(--text-contrast-strong);
 }
 
 .task-row__action-icon {
@@ -492,14 +492,14 @@
 }
 
 .task-row__action-count {
-  color: var(--neutral-400);
+  color: var(--text-neutral-400);
   font-size: 15px;
   font-weight: 500;
   line-height: 1;
 }
 
 .task-row__actions[aria-expanded="true"] .task-row__action-count {
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
 }
 
 .task-row__delete {
@@ -529,7 +529,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  border: 1px solid var(--white-10);
+  border: 1px solid var(--overlay-light-10);
   border-radius: 12px;
   background: var(--bg-4);
   padding: 8px 12px;
@@ -542,13 +542,13 @@
   border: 0;
   outline: 0;
   background: transparent;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
 }
 
 .task-row__comment-input::placeholder {
-  color: var(--neutral-450);
+  color: var(--text-neutral-450);
 }
 
 .task-row__file-input {
@@ -615,7 +615,7 @@
 }
 
 .task-comment-thread__item+.task-comment-thread__item {
-  border-top: 1px solid var(--white-10);
+  border-top: 1px solid var(--overlay-light-10);
 }
 
 .task-comment-thread__head {
@@ -638,7 +638,7 @@
   align-items: center;
   justify-content: center;
   background: var(--bg-5);
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 22px;
   font-weight: 500;
 }
@@ -650,7 +650,7 @@
 
 .task-comment-thread__author {
   margin: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 500;
   line-height: 1.2;
@@ -658,7 +658,7 @@
 
 .task-comment-thread__time {
   margin: 0;
-  color: var(--low);
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.2;
@@ -682,14 +682,14 @@
 
 .task-comment-thread__line {
   margin: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
   line-height: 180%;
 }
 
 .task-comment-thread__link {
-  color: var(--neutral-100);
+  color: var(--text-neutral-100);
   font-size: 15px;
   font-weight: 400;
   line-height: 180%;
@@ -702,8 +702,8 @@
   height: 142px;
   border-radius: 18px;
   background:
-    radial-gradient(circle at 78% 28%, var(--blue-100) 0%, var(--overlay-blue-clear) 36%),
-    linear-gradient(125deg, var(--blue-900) 0%, var(--blue-700) 52%, var(--blue-300) 100%);
+    radial-gradient(circle at 78% 28%, var(--palette-blue-100) 0%, var(--overlay-blue-clear) 36%),
+    linear-gradient(125deg, var(--palette-blue-900) 0%, var(--palette-blue-700) 52%, var(--palette-blue-300) 100%);
 }
 
 .task-comment-thread__image-upload {
@@ -716,7 +716,7 @@
 
 .task-comment-thread__composer-wrap {
   margin: 0;
-  border-top: 1px solid var(--white-10);
+  border-top: 1px solid var(--overlay-light-10);
   padding: 16px 24px 20px 24px;
 }
 
@@ -724,7 +724,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  border: 1px solid var(--white-10);
+  border: 1px solid var(--overlay-light-10);
   border-radius: 12px;
   background: var(--bg-4);
   padding: 8px 12px;
@@ -770,20 +770,20 @@
 }
 
 .priority-badge--high {
-  color: var(--danger);
-  border-color: var(--danger);
+  color: var(--state-danger);
+  border-color: var(--state-danger);
   background: transparent;
 }
 
 .priority-badge--medium {
-  color: var(--warn);
-  border-color: var(--warn);
+  color: var(--state-warning);
+  border-color: var(--state-warning);
   background: transparent;
 }
 
 .priority-badge--low {
-  color: var(--low);
-  border-color: var(--low);
+  color: var(--text-muted);
+  border-color: var(--text-muted);
   background: transparent;
 }
 
@@ -793,21 +793,21 @@
 }
 
 .status-badge--done {
-  color: var(--white-soft);
-  background: var(--warn);
-  border-color: var(--warn);
+  color: var(--text-contrast-strong);
+  background: var(--state-warning);
+  border-color: var(--state-warning);
 }
 
 .status-badge--in_progress {
-  color: var(--surface-ink);
-  background: var(--white-soft);
-  border-color: var(--white-soft);
+  color: var(--text-surface);
+  background: var(--text-contrast-strong);
+  border-color: var(--text-contrast-strong);
 }
 
 .status-badge--todo {
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   background: var(--bg-6);
-  border-color: var(--white-10);
+  border-color: var(--overlay-light-10);
 }
 
 @media (max-width: 1280px) {
@@ -1059,7 +1059,7 @@
     width: 48px;
     height: 4px;
     border-radius: 999px;
-    background: var(--white-10);
+    background: var(--overlay-light-10);
     margin: 0 0 22px;
   }
 
@@ -1138,7 +1138,7 @@
     width: 100%;
     max-width: none;
     margin: 0;
-    border: 1px solid var(--white-10);
+    border: 1px solid var(--overlay-light-10);
     border-radius: 12px;
     background: linear-gradient(90deg, var(--bg-6) 0%, var(--bg-4) 100%);
     padding: 8px 12px;
@@ -1183,7 +1183,7 @@
     width: 48px;
     height: 4px;
     border-radius: 999px;
-    background: var(--white-10);
+    background: var(--overlay-light-10);
     margin: 8px auto 6px;
   }
 

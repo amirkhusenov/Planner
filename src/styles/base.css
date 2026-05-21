@@ -9,21 +9,18 @@
   --bg: #0A0A0A;
   --line: #22262d;
   --line-soft: #1b1f26;
-  --text: #f2f4f7;
-  --text-soft: #aeb4be;
-  --accent: #f29f3a;
-  --accent-soft: #4a3318;
-  --ok: #4bb26a;
-  --low: #717171;
-  --warn: #B86F2F;
-  --danger: #B82F2F;
-  --white: #ffffff;
-  --white-soft: #fff;
-  --white-10: #ffffff1a;
-  --white-20: #ffffff33;
-  --white-30: #ffffff4d;
-  --white-rgb-30: rgba(255, 255, 255, 0.3);
-  --white-rgb-35: rgba(255, 255, 255, 0.35);
+  --text-primary: #f2f4f7;
+  --text-secondary: #aeb4be;
+  --text-muted: #717171;
+  --state-warning: #B86F2F;
+  --state-danger: #B82F2F;
+  --text-contrast: #ffffff;
+  --text-contrast-strong: #fff;
+  --overlay-light-10: #ffffff1a;
+  --overlay-light-20: #ffffff33;
+  --overlay-light-30: #ffffff4d;
+  --overlay-light-rgb-30: rgba(255, 255, 255, 0.3);
+  --overlay-light-rgb-35: rgba(255, 255, 255, 0.35);
   --black: #0a0a0a;
   --bg-deep: #101216;
   --bg-1: #111315;
@@ -33,22 +30,22 @@
   --bg-5: #20242b;
   --bg-6: #212121;
   --bg-7: #2c2c2c;
-  --surface-ink: #111;
-  --surface-ink-soft: #111317;
-  --text-ink: #060606;
+  --text-surface: #111;
+  --text-surface-soft: #111317;
+  --text-on-light: #060606;
   --line-muted: #1f242c;
   --line-weak: #23262d;
   --line-strong: #2a2f37;
-  --blue-900: #131f69;
-  --blue-700: #1e4cb2;
-  --blue-300: #80c7ff;
-  --blue-100: #d8efff;
-  --neutral-500: #545a64;
-  --neutral-450: #6c727c;
-  --neutral-400: #808792;
-  --neutral-100: #d9dce3;
-  --text-bright: #f3f5f8;
-  --text-bright-soft: #f4f5f7;
+  --palette-blue-900: #131f69;
+  --palette-blue-700: #1e4cb2;
+  --palette-blue-300: #80c7ff;
+  --palette-blue-100: #d8efff;
+  --text-neutral-500: #545a64;
+  --text-neutral-450: #6c727c;
+  --text-neutral-400: #808792;
+  --text-neutral-100: #d9dce3;
+  --text-emphasis: #f3f5f8;
+  --text-emphasis-soft: #f4f5f7;
   --overlay-dark: rgba(10, 10, 10, 0.45);
   --overlay-blue-clear: rgba(216, 239, 255, 0);
 }
@@ -68,7 +65,7 @@ body,
 body {
   font-family: "Geist Sans", "Segoe UI", Roboto, sans-serif;
   background: var(--bg);
-  color: var(--text);
+  color: var(--text-primary);
   overflow-x: hidden;
 }
 

@@ -11,7 +11,7 @@
 
 .activity-header__title {
   margin: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 36px;
   font-weight: 700;
   line-height: 1.06;
@@ -44,7 +44,7 @@
 
 .activity-card__title {
   margin: 0 0 20px;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.08;
@@ -52,7 +52,7 @@
 
 .activity-card__plan {
   margin: 0 0 6px;
-  color: var(--low);
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.2;
@@ -60,14 +60,14 @@
 
 .activity-card__progress {
   margin: 0 0 20px;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.2;
 }
 
 .activity-card__progress-muted {
-  color: var(--low);
+  color: var(--text-muted);
 }
 
 .activity-card__track {
@@ -82,7 +82,7 @@
   display: block;
   height: 100%;
   border-radius: 999px;
-  background: var(--white);
+  background: var(--text-contrast);
 }
 
 .activity-card__actions {
@@ -93,10 +93,10 @@
 }
 
 .activity-card__actions .button {
-  border: 1px solid var(--white-10);
+  border: 1px solid var(--overlay-light-10);
   border-radius: 8px;
   background: transparent;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   padding: 6px 12px;
   gap: 6px;
 }
@@ -151,7 +151,7 @@
 }
 
 .activity-card__bar-hit:focus-visible {
-  outline: 1px solid var(--white-rgb-35);
+  outline: 1px solid var(--overlay-light-rgb-35);
   outline-offset: 4px;
 }
 
@@ -160,7 +160,7 @@
   height: 100%;
   min-height: 20px;
   border-radius: 3px;
-  background: var(--warn);
+  background: var(--state-warning);
   transition: filter 160ms ease, opacity 160ms ease;
 }
 
@@ -188,7 +188,7 @@
 
 .activity-card__tooltip-date {
   margin: 0;
-  color: var(--low);
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
@@ -197,7 +197,7 @@
 
 .activity-card__tooltip-time {
   margin: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.8;
@@ -271,7 +271,7 @@
 
 .activity-modal__title {
   margin: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.1;
@@ -302,7 +302,7 @@
 
 .activity-modal__switch-label {
   margin: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.2;
@@ -328,20 +328,20 @@
 .activity-modal__actions .button--ghost {
   width: 160px;
   min-width: 160px;
-  border: 1px solid var(--white-10);
+  border: 1px solid var(--overlay-light-10);
   border-radius: 8px;
   background: var(--bg-6);
-  color: var(--white);
+  color: var(--text-contrast);
   padding: 10px 0;
 }
 
 .activity-session-modal__actions .button--ghost {
   width: 136px;
   min-width: 136px;
-  border: 1px solid var(--white-10);
+  border: 1px solid var(--overlay-light-10);
   border-radius: 8px;
   background: var(--bg-6);
-  color: var(--white);
+  color: var(--text-contrast);
   padding: 10px 0;
 }
 
@@ -380,14 +380,14 @@
 
 .activity-session-modal__title {
   margin: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.08;
 }
 
 .activity-session-modal__title-date {
-  color: var(--white-rgb-30);
+  color: var(--overlay-light-rgb-30);
 }
 
 .activity-session-modal__head-right {
@@ -439,7 +439,7 @@
 }
 
 .activity-session-modal__date-label {
-  color: var(--white);
+  color: var(--text-contrast);
   border: transparent;
   background: transparent;
   cursor: pointer;
@@ -467,7 +467,7 @@
 .activity-session-modal__separator {
   margin-top: 32px;
   margin-bottom: 40px;
-  border-top: 1px solid var(--white-10);
+  border-top: 1px solid var(--overlay-light-10);
 }
 
 .activity-session-modal__form {
@@ -499,8 +499,8 @@
 .activity-session-modal__stepper-chevron {
   width: 8px;
   height: 8px;
-  border-left: 1.5px solid var(--white);
-  border-bottom: 1.5px solid var(--white);
+  border-left: 1.5px solid var(--text-contrast);
+  border-bottom: 1.5px solid var(--text-contrast);
   display: inline-block;
 }
 
@@ -703,7 +703,7 @@
     display: block;
     margin-top: 24px;
     margin-bottom: 24px;
-    border-top: 1px solid var(--white-10);
+    border-top: 1px solid var(--overlay-light-10);
   }
 
   .activity-session-modal__date-nav {
@@ -749,10 +749,10 @@
   }
 
   .activity-session-modal__actions .button--ghost {
-    border: 1px solid var(--white-10);
+    border: 1px solid var(--overlay-light-10);
     border-radius: 8px;
     background: linear-gradient(90deg, var(--bg-6) 0%, var(--bg-4) 100%);
-    color: var(--white-soft);
+    color: var(--text-contrast-strong);
     min-width: 0;
   }
 }

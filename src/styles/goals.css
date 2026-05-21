@@ -11,7 +11,7 @@
 
 .goals-header__title {
   margin: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 36px;
   font-weight: 700;
   line-height: 1.06;
@@ -38,7 +38,7 @@
 
 .goals-card__title {
   margin: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.08;
@@ -46,7 +46,7 @@
 
 .goals-card__period {
   margin: 12px 0 0;
-  color: var(--low);
+  color: var(--text-muted);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.2;
@@ -54,7 +54,7 @@
 
 .goals-card__value-label {
   margin: 20px 0 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.06;
@@ -62,10 +62,10 @@
 
 .goals-card .button {
   margin-top: 20px;
-  border: 1px solid var(--white-10);
+  border: 1px solid var(--overlay-light-10);
   border-radius: 8px;
   background: transparent;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   padding: 6px 12px;
   gap: 6px;
 }
@@ -96,7 +96,7 @@
 }
 
 .goals-card__ring-progress {
-  stroke: var(--warn);
+  stroke: var(--state-warning);
   stroke-linecap: round;
 }
 
@@ -112,14 +112,14 @@
 
 .goals-card__ring-target {
   margin: 0;
-  color: var(--low);
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 400;
 }
 
 .goals-card__ring-value {
   margin: 8px 0 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 24px;
   font-weight: 700;
   line-height: 1;
@@ -154,7 +154,7 @@
   z-index: 130;
   max-height: calc(100vh - 32px);
   overflow: auto;
-  border: 1px solid var(--white-10);
+  border: 1px solid var(--overlay-light-10);
   border-radius: 12px;
   background: var(--bg-2);
   padding: 28px;
@@ -179,7 +179,7 @@
 
 .goals-modal__title {
   margin: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.05;
@@ -229,10 +229,10 @@
 }
 
 .goals-modal__actions .button--ghost {
-  border: 1px solid var(--white-10);
+  border: 1px solid var(--overlay-light-10);
   border-radius: 8px;
   background: var(--bg-6);
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   padding: 10px 0;
 }
 
@@ -245,7 +245,7 @@
   left: 50%;
   top: 50%;
   z-index: 140;
-  border: 1px solid var(--white-10);
+  border: 1px solid var(--overlay-light-10);
   border-radius: 16px;
   background: var(--bg-2);
   padding: 30px 32px;
@@ -279,7 +279,7 @@
 .goals-delete-modal__title {
 
   margin: 0;
-  color: var(--white);
+  color: var(--text-contrast);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.2;
@@ -287,7 +287,7 @@
 
 .goals-delete-modal__goal-name {
   display: block;
-  color: var(--white-30);
+  color: var(--overlay-light-30);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.2;
@@ -315,7 +315,7 @@
 
 .goals-delete-modal__text {
   margin: 0;
-  color: var(--white);
+  color: var(--text-contrast);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.4;
@@ -339,15 +339,15 @@
 }
 
 .goals-delete-modal__cancel {
-  border: 1px solid var(--white-10);
+  border: 1px solid var(--overlay-light-10);
   background: var(--bg-6);
-  color: var(--white);
+  color: var(--text-contrast);
 }
 
 .goals-delete-modal__confirm {
-  border: 1px solid var(--danger);
+  border: 1px solid var(--state-danger);
   background: transparent;
-  color: var(--danger);
+  color: var(--state-danger);
 }
 
 .goals-edit-modal {
@@ -382,7 +382,7 @@
 
 .goals-edit-modal__title {
   margin: 0;
-  color: var(--white);
+  color: var(--text-contrast);
   font-size: 36px;
   font-weight: 700;
   line-height: 1.05;
@@ -395,10 +395,10 @@
 }
 
 .goals-edit-modal__delete {
-  border: 1px solid var(--danger);
+  border: 1px solid var(--state-danger);
   border-radius: 8px;
   background: transparent;
-  color: var(--danger);
+  color: var(--state-danger);
   padding: 6px 12px;
   display: inline-flex;
   align-items: center;
@@ -410,9 +410,9 @@
 }
 
 .goals-edit-modal__delete img {
-  color: var(--danger);
-  fill: var(--danger);
-  stroke: var(--danger);
+  color: var(--state-danger);
+  fill: var(--state-danger);
+  stroke: var(--state-danger);
   filter: brightness(0) saturate(100%) invert(20%) sepia(91%) saturate(3114%) hue-rotate(343deg) brightness(88%) contrast(97%);
 }
 
@@ -434,7 +434,7 @@
 .goals-edit-modal__separator {
   margin-top: 24px;
   margin-bottom: 32px;
-  border-top: 1px solid var(--white-10);
+  border-top: 1px solid var(--overlay-light-10);
 }
 
 .goals-edit-modal__form {
@@ -461,14 +461,14 @@
 
 .goals-edit-modal__section-title {
   margin: 0;
-  color: var(--white);
+  color: var(--text-contrast);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.05;
 }
 
 .goals-edit-modal__section-title-muted {
-  color: var(--white-30);
+  color: var(--overlay-light-30);
 }
 
 .goals-edit-modal__date-nav {
@@ -500,7 +500,7 @@
 }
 
 .goals-edit-modal__date-label {
-  color: var(--white);
+  color: var(--text-contrast);
   border: 0;
   background: transparent;
   font-size: 15px;
@@ -544,7 +544,7 @@
 }
 
 .goals-edit-modal__bar-hit:focus-visible {
-  outline: 1px solid var(--white-20);
+  outline: 1px solid var(--overlay-light-20);
   outline-offset: 4px;
 }
 
@@ -553,7 +553,7 @@
   height: 100%;
   min-height: 10px;
   border-radius: 3px;
-  background: var(--warn);
+  background: var(--state-warning);
 }
 
 .goals-edit-modal__tooltip {
@@ -573,7 +573,7 @@
 
 .goals-edit-modal__tooltip-date {
   margin: 0;
-  color: var(--low);
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
@@ -582,7 +582,7 @@
 
 .goals-edit-modal__tooltip-value {
   margin: 0;
-  color: var(--white);
+  color: var(--text-contrast);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.1;
@@ -601,10 +601,10 @@
 }
 
 .goals-edit-modal__actions .button--ghost {
-  border: 1px solid var(--white-10);
+  border: 1px solid var(--overlay-light-10);
   border-radius: 8px;
   background: var(--bg-6);
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   padding: 10px 0;
 }
 
@@ -840,7 +840,7 @@
     width: 64px;
     height: 6px;
     border-radius: 999px;
-    background: var(--white-10);
+    background: var(--overlay-light-10);
     margin: 6px auto 8px;
   }
 

@@ -3,7 +3,7 @@
 }
 
 .settings-page__title {
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 36px;
   font-weight: 800;
   line-height: 1.1;
@@ -16,7 +16,7 @@
 }
 
 .settings-group__title {
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.2;
@@ -24,7 +24,7 @@
 
 .settings-group__rows {
   margin-top: 16px;
-  border-top: 1px solid var(--white-10);
+  border-top: 1px solid var(--overlay-light-10);
 }
 
 .settings-row {
@@ -33,7 +33,7 @@
   justify-content: space-between;
   gap: 24px;
   padding: 16px 0;
-  border-bottom: 1px solid var(--white-10);
+  border-bottom: 1px solid var(--overlay-light-10);
 }
 
 .settings-row__left {
@@ -43,14 +43,14 @@
 }
 
 .settings-row__label {
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.2;
 }
 
 .settings-row__note {
-  color: var(--low);
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.35;
@@ -62,7 +62,7 @@
 }
 
 .settings-value {
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.2;
@@ -72,7 +72,7 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.2;
@@ -87,14 +87,14 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--warn);
+  background: var(--state-warning);
 }
 
 .settings-danger-button {
-  border: 1px solid var(--danger);
+  border: 1px solid var(--state-danger);
   border-radius: 8px;
   background: transparent;
-  color: var(--danger);
+  color: var(--state-danger);
   font-size: 15px;
   font-weight: 400;
   line-height: 1;

@@ -26,7 +26,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--text);
+  color: var(--text-primary);
   font-weight: 600;
   margin-bottom: 36px;
 }
@@ -69,7 +69,7 @@
   text-align: center;
   border: 1px solid transparent;
   background: transparent;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   border-radius: 8px;
   width: 40px;
   height: 40px;
@@ -95,7 +95,7 @@
 
 .sidebar__nav-item.is-active {
   background: var(--bg-6);
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
 }
 
 .sidebar__profile-wrap {
@@ -111,7 +111,7 @@
   align-items: center;
   justify-content: center;
   gap: 0;
-  color: var(--text-soft);
+  color: var(--text-secondary);
   cursor: pointer;
   border-radius: 8px;
   border: 1px solid transparent;
@@ -149,7 +149,7 @@
   display: grid;
   place-items: center;
   background: var(--bg-6);
-  color: var(--text);
+  color: var(--text-primary);
   font-size: 15px;
   font-weight: 500;
 }
@@ -162,14 +162,14 @@
 
 .sidebar__profile-name {
   margin: 0;
-  color: var(--text);
+  color: var(--text-primary);
   font-size: 15px;
   font-weight: 500;
 }
 
 .sidebar__profile-time {
   margin: 0;
-  color: var(--low);
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 400;
   white-space: nowrap;
@@ -206,7 +206,7 @@
 
 .sidebar-settings__name {
   margin: 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.2;
@@ -222,7 +222,7 @@
 .sidebar-settings__line {
   margin: 16px 0;
   height: 1px;
-  background: var(--white-10);
+  background: var(--overlay-light-10);
 }
 
 .sidebar-settings__list {
@@ -237,7 +237,7 @@
   display: inline-flex;
   align-items: center;
   gap: 11px;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.2;
@@ -274,13 +274,13 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   cursor: pointer;
   text-align: left;
 }
 
 .sidebar-accounts__email {
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.2;
@@ -293,7 +293,7 @@
 .sidebar-accounts__line {
   margin: 16px 0;
   height: 1px;
-  background: var(--white-10);
+  background: var(--overlay-light-10);
 }
 
 .sidebar-accounts__add {
@@ -303,7 +303,7 @@
   display: inline-flex;
   align-items: center;
   gap: 11px;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.2;
@@ -348,7 +348,7 @@
   margin: 0;
   font-size: 24px;
   font-weight: 700;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   margin-right: auto;
   white-space: nowrap;
   transition: opacity 180ms ease, transform 220ms ease;
@@ -400,7 +400,7 @@
   margin: 0;
   font-size: 12px;
   font-weight: 400;
-  color: var(--low);
+  color: var(--text-muted);
 }
 
 .overview-card__headline {
@@ -416,14 +416,14 @@
   font-size: 36px;
   font-weight: 800;
   line-height: 1;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
 }
 
 .overview-card__ratio {
   margin: 0;
   font-size: 12px;
   font-weight: 400;
-  color: var(--low);
+  color: var(--text-muted);
 }
 
 .overview-card__track {
@@ -439,7 +439,7 @@
   display: block;
   height: 100%;
   border-radius: 999px;
-  background: var(--warn);
+  background: var(--state-warning);
 }
 
 .overview-goal__top {
@@ -460,7 +460,7 @@
 
 .overview-goal__name {
   margin: 8px 0 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 34px;
   font-weight: 700;
   line-height: 1.05;
@@ -492,7 +492,7 @@
 }
 
 .overview-goal__ring-progress {
-  stroke: var(--warn);
+  stroke: var(--state-warning);
   stroke-linecap: round;
   transition: stroke-dashoffset 180ms ease;
 }
@@ -511,14 +511,14 @@
 
 .overview-goal__target {
   margin: 0;
-  color: var(--low);
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 400;
 }
 
 .overview-goal__value {
   margin: 6px 0 0;
-  color: var(--white-soft);
+  color: var(--text-contrast-strong);
   font-size: 36px;
   font-weight: 800;
   line-height: 1;
@@ -575,7 +575,7 @@
     border-radius: 0;
     background: transparent;
     justify-content: flex-start;
-    color: var(--low);
+    color: var(--text-muted);
   }
 
   .sidebar__nav-label {
@@ -588,7 +588,7 @@
   }
 
   .sidebar__nav-item.is-active {
-    color: var(--white-soft);
+    color: var(--text-contrast-strong);
     background: transparent;
   }
 

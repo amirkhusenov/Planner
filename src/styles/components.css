@@ -4,8 +4,8 @@
   gap: 6px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--white);
-  color: var(--surface-ink-soft);
+  background: var(--text-contrast);
+  color: var(--text-surface-soft);
   font-size: 15px;
   font-weight: 500;
   line-height: 1;
@@ -19,7 +19,7 @@
 
 .button--ghost {
   background: var(--bg-2);
-  color: var(--text-soft);
+  color: var(--text-secondary);
 }
 
 .button__icon {
@@ -29,7 +29,7 @@
 .icon-button {
   border: 1px solid var(--line);
   background: transparent;
-  color: var(--text-soft);
+  color: var(--text-secondary);
   border-radius: 5px;
   min-width: 26px;
   height: 26px;
