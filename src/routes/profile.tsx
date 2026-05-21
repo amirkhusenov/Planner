@@ -1,6 +1,6 @@
 ﻿import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import PlannerShell from '../components/layout/PlannerShell'
-import { ICON_PATHS } from '../constants/iconPaths'
+import { ICON_PATHS } from '#constants/iconPaths'
 
 export const Route = createFileRoute('/profile')({
   component: ProfileEditPage,

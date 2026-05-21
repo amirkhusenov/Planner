@@ -1,6 +1,7 @@
+import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { ru } from 'date-fns/locale'
-import { ICON_PATHS } from '../../constants/iconPaths'
+import { ICON_PATHS } from '#constants/iconPaths'
 import Calendar from './Calendar'
 
 const MONTH_NAME_RU = new Intl.DateTimeFormat('ru-RU', { month: 'long' })
@@ -136,7 +137,7 @@ export default function WorkCalendarNav({
 
       <button
         type="button"
-        className={`${arrowClassName} ${nextArrowClassName}`.trim()}
+        className={clsx(arrowClassName, nextArrowClassName)}
         aria-label={nextAriaLabel}
         onClick={onNext}
       >

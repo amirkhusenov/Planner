@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { useId, type InputHTMLAttributes, type ReactNode } from 'react'
 
 interface InputFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -18,7 +19,9 @@ export default function InputField({
 
   return (
     <label
-      className={`input-field${after ? ' has-after' : ''} ${className}`.trim()}
+      className={clsx('input-field', className, {
+        'has-after': Boolean(after),
+      })}
       htmlFor={inputId}
     >
       <span className="input-field__label">{label}</span>

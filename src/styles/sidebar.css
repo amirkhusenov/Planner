@@ -88,11 +88,6 @@
   padding: 12px;
 }
 
-.sidebar__nav-icon {
-  width: 16px;
-  height: 16px;
-  flex: 0 0 auto;
-}
 
 .sidebar.is-collapsed .sidebar__nav-label {
   display: none;
@@ -150,7 +145,6 @@
 .avatar {
   width: 40px;
   height: 40px;
-  flex: 0 0 40px;
   border-radius: 999px;
   display: grid;
   place-items: center;
@@ -655,5 +649,14 @@
 
   .sidebar__nav-item {
     font-size: 12px;
+  }
+
+  .sidebar__profile-name {
+    font-size: 12px;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
   }
 }

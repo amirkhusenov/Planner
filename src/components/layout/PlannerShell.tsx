@@ -1,4 +1,6 @@
-﻿import type { ReactNode } from 'react'
+import clsx from 'clsx'
+import type { ReactNode } from 'react'
+import { ICON_PATHS } from '#constants/iconPaths'
 import Sidebar from './Sidebar'
 import RightSidebar from './RightSidebar'
 
@@ -15,9 +17,7 @@ export default function PlannerShell({
   showMobileTop = true,
   showRightSidebar = true,
 }: PlannerShellProps) {
-  const sectionClassName = contentClassName
-    ? `planner-content ${contentClassName}`
-    : 'planner-content'
+  const sectionClassName = clsx('planner-content', contentClassName)
 
   return (
     <main className="planner-root">
@@ -26,7 +26,7 @@ export default function PlannerShell({
       <section className={sectionClassName}>
         {showMobileTop ? (
           <header className="planner-mobile-top" aria-label="Мобильная шапка">
-            <p className="planner-mobile-top__brand">Planner</p>
+            <img className="planner-mobile-top__brand" src={ICON_PATHS.sidebar.logo} alt="Planner" />
             <div className="planner-mobile-top__profile">
               <div className="avatar">И</div>
               <div>

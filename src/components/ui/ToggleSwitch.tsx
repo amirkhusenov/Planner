@@ -1,4 +1,5 @@
-﻿import { useState, type ButtonHTMLAttributes } from 'react'
+import clsx from 'clsx'
+import { useState, type ButtonHTMLAttributes } from 'react'
 
 interface ToggleSwitchProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> {
   defaultChecked?: boolean
@@ -30,7 +31,7 @@ export default function ToggleSwitch({
   return (
     <button
       type="button"
-      className={`toggle-switch${isChecked ? ' is-on' : ''} ${className}`.trim()}
+      className={clsx('toggle-switch', className, { 'is-on': isChecked })}
       aria-pressed={isChecked}
       onClick={toggle}
       {...props}

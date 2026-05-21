@@ -1,13 +1,14 @@
-﻿import { Plus } from 'lucide-react'
+import clsx from 'clsx'
+import { Plus } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import PlannerShell from '../components/layout/PlannerShell'
-import Button from '../components/ui/Button'
-import InputField from '../components/ui/InputField'
-import TextareaField from '../components/ui/TextareaField'
-import ToggleSwitch from '../components/ui/ToggleSwitch'
-import WorkCalendarNav from '../components/ui/WorkCalendarNav'
-import { ICON_PATHS } from '../constants/iconPaths'
+import Button from '#components/ui/Button'
+import InputField from '#components/ui/InputField'
+import TextareaField from '#components/ui/TextareaField'
+import ToggleSwitch from '#components/ui/ToggleSwitch'
+import WorkCalendarNav from '#components/ui/WorkCalendarNav'
+import { ICON_PATHS } from '#constants/iconPaths'
 
 export const Route = createFileRoute('/activity')({
   component: ActivityPage,
@@ -58,6 +59,7 @@ const HOURS_MAX = 23
 const MINUTES_MIN = 0
 const MINUTES_MAX = 59
 const DEFAULT_SESSION_DATE = new Date(2026, 3, 22)
+const MONTH_TIMELINE_ROW_LENGTH = 15
 
 const ACTIVITY_ITEMS: ActivityItem[] = [
   {
@@ -210,6 +212,41 @@ export default function ActivityPage() {
 
   const isAnyModalOpen = isFormOpen || isSessionFormOpen
 
+  const renderTimelinePoint = (itemId: string, pointRange: ActivityRange, index: number, value: number) => {
+    const pointId = `${itemId}-${pointRange}-${index}`
+
+    return (
+      <div
+        key={`${itemId}-${index}`}
+        className="activity-card__bar-wrap"
+        style={{ height: `${value}%` }}
+      >
+        <button
+          type="button"
+          className="activity-card__bar-hit"
+          onMouseEnter={() => setHoveredPointId(pointId)}
+          onMouseLeave={() => setHoveredPointId(null)}
+          onFocus={() => setHoveredPointId(pointId)}
+          onBlur={() => setHoveredPointId(null)}
+          aria-label={`${getTimelinePointDateLabel(pointRange, index)} — ${getTimelinePointMinutes(value, pointRange)}`}
+        >
+          <span className="activity-card__bar" />
+        </button>
+
+        {hoveredPointId === pointId ? (
+          <div className="activity-card__tooltip" role="status" aria-live="polite">
+            <p className="activity-card__tooltip-date">
+              {getTimelinePointDateLabel(pointRange, index)}
+            </p>
+            <p className="activity-card__tooltip-time">
+              {getTimelinePointMinutes(value, pointRange)}
+            </p>
+          </div>
+        ) : null}
+      </div>
+    )
+  }
+
   const openForm = (activity?: ActivityItem) => {
     setSelectedActivity(activity ?? null)
     setIsPlanned(false)
@@ -271,8 +308,21 @@ export default function ActivityPage() {
     }
   }, [isAnyModalOpen])
 
+  useEffect(() => {
+    if (!isAnyModalOpen) {
+      return
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [isAnyModalOpen])
+
   return (
-    <PlannerShell showMobileTop={false}>
+    <PlannerShell>
       <section className="activity-page">
         <header className="activity-header">
           <h1 className="activity-header__title">Активности</h1>
@@ -280,21 +330,21 @@ export default function ActivityPage() {
           <div className="segmented-control" role="tablist" aria-label="Период активности">
             <button
               type="button"
-              className={`segmented-control__item${range === 'week' ? ' is-active' : ''}`}
+              className={clsx('segmented-control__item', { 'is-active': range === 'week' })}
               onClick={() => setRange('week')}
             >
               Неделя
             </button>
             <button
               type="button"
-              className={`segmented-control__item${range === 'month' ? ' is-active' : ''}`}
+              className={clsx('segmented-control__item', { 'is-active': range === 'month' })}
               onClick={() => setRange('month')}
             >
               Месяц
             </button>
             <button
               type="button"
-              className={`segmented-control__item${range === 'year' ? ' is-active' : ''}`}
+              className={clsx('segmented-control__item', { 'is-active': range === 'year' })}
               onClick={() => setRange('year')}
             >
               Год
@@ -329,37 +379,19 @@ export default function ActivityPage() {
                   </div>
                 </div>
 
-                <div className={`activity-card__bars${range === 'month' ? ' is-month' : ''}`}>
-                  {item.timeline[range].map((value, index) => (
-                    <div
-                      key={`${item.id}-${index}`}
-                      className="activity-card__bar-wrap"
-                      style={{ height: `${value}%` }}
-                    >
-                      <button
-                        type="button"
-                        className="activity-card__bar-hit"
-                        onMouseEnter={() => setHoveredPointId(`${item.id}-${range}-${index}`)}
-                        onMouseLeave={() => setHoveredPointId(null)}
-                        onFocus={() => setHoveredPointId(`${item.id}-${range}-${index}`)}
-                        onBlur={() => setHoveredPointId(null)}
-                        aria-label={`${getTimelinePointDateLabel(range, index)} — ${getTimelinePointMinutes(value, range)}`}
-                      >
-                        <span className="activity-card__bar" />
-                      </button>
-
-                      {hoveredPointId === `${item.id}-${range}-${index}` ? (
-                        <div className="activity-card__tooltip" role="status" aria-live="polite">
-                          <p className="activity-card__tooltip-date">
-                            {getTimelinePointDateLabel(range, index)}
-                          </p>
-                          <p className="activity-card__tooltip-time">
-                            {getTimelinePointMinutes(value, range)}
-                          </p>
-                        </div>
-                      ) : null}
-                    </div>
-                  ))}
+                <div className={clsx('activity-card__bars', { 'is-month': range === 'month' })}>
+                  {range === 'month'
+                    ? [item.timeline.month.slice(0, MONTH_TIMELINE_ROW_LENGTH), item.timeline.month.slice(MONTH_TIMELINE_ROW_LENGTH)]
+                        .filter((row) => row.length > 0)
+                        .map((row, rowIndex) => (
+                          <div key={`${item.id}-month-row-${rowIndex}`} className="activity-card__bars-row">
+                            {row.map((value, index) => {
+                              const timelineIndex = rowIndex * MONTH_TIMELINE_ROW_LENGTH + index
+                              return renderTimelinePoint(item.id, range, timelineIndex, value)
+                            })}
+                          </div>
+                        ))
+                    : item.timeline[range].map((value, index) => renderTimelinePoint(item.id, range, index, value))}
                 </div>
               </div>
             </article>
@@ -375,13 +407,13 @@ export default function ActivityPage() {
 
       <button
         type="button"
-        className={`activity-modal-overlay${isAnyModalOpen ? ' is-open' : ''}`}
+        className={clsx('activity-modal-overlay', { 'is-open': isAnyModalOpen })}
         aria-label="Закрыть форму"
         onClick={closeAllModals}
       />
 
       <section
-        className={`activity-modal${isFormOpen ? ' is-open' : ''}`}
+        className={clsx('activity-modal', { 'is-open': isFormOpen })}
         role="dialog"
         aria-modal="true"
         aria-label="Добавить активность"
@@ -432,7 +464,7 @@ export default function ActivityPage() {
       </section>
 
       <section
-        className={`activity-session-modal${isSessionFormOpen ? ' is-open' : ''}`}
+        className={clsx('activity-session-modal', { 'is-open': isSessionFormOpen })}
         role="dialog"
         aria-modal="true"
         aria-label="Добавить занятие"

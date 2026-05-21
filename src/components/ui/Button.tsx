@@ -1,4 +1,5 @@
-﻿import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import clsx from 'clsx'
+import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
 type ButtonVariant = 'primary' | 'ghost'
 
@@ -18,7 +19,7 @@ export default function Button({
   return (
     <button
       type={type}
-      className={`button button--${variant} ${className}`.trim()}
+      className={clsx('button', `button--${variant}`, className)}
       {...props}
     >
       {icon ? <span className="button__icon">{icon}</span> : null}

@@ -10,7 +10,7 @@
   margin: 0;
   color: var(--white-soft);
   font-size: 36px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.02;
 }
 
@@ -247,7 +247,8 @@
 }
 
 .statistics-chart-card__tabs .segmented-control__item {
-  padding: 5px 10px;
+  min-height: 32px;
+  padding: 6px 12px;
 }
 
 .statistics-chart-card__bars {
@@ -255,6 +256,10 @@
   align-items: flex-end;
   gap: 6px;
   height: 100%;
+}
+
+.statistics-chart-card__bars-row {
+  display: contents;
 }
 
 .statistics-chart-card__bars--week {
@@ -378,12 +383,16 @@
   .statistics-goal-card__value,
   .statistics-days-card__value,
   .statistics-chart-card__value {
-    font-size: 38px;
+    font-size: 20px;
+  }
+
+  .statistics-card--mini .statistics-card__value {
+    font-size: 20px;
   }
 
   .statistics-chart-card__value-muted,
   .statistics-days-card__muted {
-    font-size: 24px;
+    font-size: 20px;
   }
 }
 
@@ -391,19 +400,39 @@
   .statistics-page__title {
     font-size: 36px;
   }
+
+  .statistics-chart-card__head {
+    flex-direction: column;
+  }
+
+  .statistics-days-card__date {
+    margin-top: 32px;
+  }
+
+  .statistics-goal-card__ring-value {
+    font-size: 24px;
+  }
 }
 
 @media (max-width: 578px) {
   .statistics-page {
-    padding: 14px 16px 96px;
+    padding: 16px;
+  }
+
+  .statistics-left-stack,
+  .statistics-progress-stack,
+  .statistics-side-stack {
+    gap: 8px;
   }
 
   .statistics-grid {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
 
   .statistics-mini-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .statistics-chart-card {
@@ -411,7 +440,35 @@
     min-height: 320px;
   }
 
+  .statistics-chart-card__tabs {
+    width: 100%;
+    padding: 6px;
+  }
+
+  .statistics-chart-card__tabs .segmented-control__item {
+    flex: 1 1 0;
+    min-height: 36px;
+    padding: 6px 12px;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .statistics-chart-card__bars--month {
+    display: grid;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .statistics-chart-card__bars--month .statistics-chart-card__bars-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    min-width: 0;
+    min-height: 0;
+  }
+
   .statistics-page__title {
-    font-size: 34px;
+    font-size: 24px;
   }
 }

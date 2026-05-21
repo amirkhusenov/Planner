@@ -1,4 +1,6 @@
-﻿import { ICON_PATHS } from '../../constants/iconPaths'
+import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
+import { ICON_PATHS } from '#constants/iconPaths'
 import type { ThreadComment } from './taskCommentTypes'
 
 interface TaskCommentThreadMobileProps {
@@ -28,7 +30,24 @@ export default function TaskCommentThreadMobile({
   onPickImage,
   onSubmitComment,
 }: TaskCommentThreadMobileProps) {
-  return (
+  useEffect(() => {
+    if (typeof document === 'undefined') {
+      return
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [])
+
+  if (typeof document === 'undefined') {
+    return null
+  }
+
+  return createPortal(
     <>
       <button
         className="task-comment-thread__overlay task-comment-thread__overlay--mobile"
@@ -115,6 +134,7 @@ export default function TaskCommentThreadMobile({
           </div>
         </form>
       </section>
-    </>
+    </>,
+    document.body,
   )
 }

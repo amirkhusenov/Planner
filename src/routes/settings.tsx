@@ -1,8 +1,8 @@
-﻿import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
 import PlannerShell from '../components/layout/PlannerShell'
-import ToggleSwitch from '../components/ui/ToggleSwitch'
-import { ICON_PATHS } from '../constants/iconPaths'
+import ToggleSwitch from '#components/ui/ToggleSwitch'
+import { ICON_PATHS } from '#constants/iconPaths'
 
 export const Route = createFileRoute('/settings')({
   component: SettingsPage,

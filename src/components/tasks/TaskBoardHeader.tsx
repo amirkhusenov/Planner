@@ -1,7 +1,8 @@
+import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 import { ru } from 'date-fns/locale'
-import Calendar from '../ui/Calendar'
-import WorkCalendarNav from '../ui/WorkCalendarNav'
+import Calendar from '#components/ui/Calendar'
+import WorkCalendarNav from '#components/ui/WorkCalendarNav'
 
 const MONTH_NAME_RU = new Intl.DateTimeFormat('ru-RU', { month: 'long' })
 const WEEKDAY_SHORT_RU = new Intl.DateTimeFormat('ru-RU', { weekday: 'short' })
@@ -102,6 +103,19 @@ export default function TaskBoardHeader({
     }
   }, [])
 
+  useEffect(() => {
+    if (!isCalendarOpen || typeof document === 'undefined') {
+      return
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [isCalendarOpen])
+
   const handleViewChange = (next: TaskBoardView) => {
     onViewChange?.(next)
   }
@@ -126,21 +140,27 @@ export default function TaskBoardHeader({
         <div className="segmented-control" role="tablist" aria-label="Диапазон">
           <button
             type="button"
-            className={`segmented-control__item${view === 'day' ? ' is-active' : ''}`}
+            className={clsx('segmented-control__item', {
+              'is-active': view === 'day',
+            })}
             onClick={() => handleViewChange('day')}
           >
             День
           </button>
           <button
             type="button"
-            className={`segmented-control__item${view === 'week' ? ' is-active' : ''}`}
+            className={clsx('segmented-control__item', {
+              'is-active': view === 'week',
+            })}
             onClick={() => handleViewChange('week')}
           >
             Неделя
           </button>
           <button
             type="button"
-            className={`segmented-control__item${view === 'month' ? ' is-active' : ''}`}
+            className={clsx('segmented-control__item', {
+              'is-active': view === 'month',
+            })}
             onClick={() => handleViewChange('month')}
           >
             Месяц
@@ -182,31 +202,39 @@ export default function TaskBoardHeader({
           />
 
           {isCalendarOpen ? (
-            <section className="tasks-calendar" aria-label="Календарь">
-              <Calendar
-                locale={ru}
-                weekStartsOn={1}
-                navLayout="around"
-                mode="single"
-                month={viewDate}
-                selected={activeDate}
-                onMonthChange={setViewDate}
-                onSelect={(date) => {
-                  if (!date) {
-                    return
-                  }
-                  handleDateChange(date)
-                  setIsCalendarOpen(false)
-                }}
-                hidden={[
-                  (date) => date < startOfMonth(viewDate),
-                ]}
-                formatters={{
-                  formatCaption: calendarCaptionLabel,
-                  formatWeekdayName: calendarWeekdayLabel,
-                }}
+            <>
+              <button
+                className="tasks-calendar__overlay"
+                type="button"
+                aria-label="Close calendar"
+                onClick={() => setIsCalendarOpen(false)}
               />
-            </section>
+              <section className="tasks-calendar" aria-label="Calendar">
+                <Calendar
+                  locale={ru}
+                  weekStartsOn={1}
+                  navLayout="around"
+                  mode="single"
+                  month={viewDate}
+                  selected={activeDate}
+                  onMonthChange={setViewDate}
+                  onSelect={(date) => {
+                    if (!date) {
+                      return
+                    }
+                    handleDateChange(date)
+                    setIsCalendarOpen(false)
+                  }}
+                  hidden={[
+                    (date) => date < startOfMonth(viewDate),
+                  ]}
+                  formatters={{
+                    formatCaption: calendarCaptionLabel,
+                    formatWeekdayName: calendarWeekdayLabel,
+                  }}
+                />
+              </section>
+            </>
           ) : null}
         </div>
       </div>

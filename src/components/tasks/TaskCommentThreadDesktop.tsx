@@ -1,4 +1,4 @@
-﻿import { ICON_PATHS } from '../../constants/iconPaths'
+import { ICON_PATHS } from '#constants/iconPaths'
 import type { ThreadComment } from './taskCommentTypes'
 
 interface TaskCommentThreadDesktopProps {

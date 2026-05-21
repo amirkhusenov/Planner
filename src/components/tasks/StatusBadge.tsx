@@ -1,4 +1,5 @@
-﻿import { STATUS_LABELS } from '../../data/taskMeta'
+import clsx from 'clsx'
+import { STATUS_LABELS } from '../../data/taskMeta'
 import type { TaskStatus } from '../../types/task'
 
 interface StatusBadgeProps {
@@ -6,6 +7,6 @@ interface StatusBadgeProps {
 }
 
 export default function StatusBadge({ status }: StatusBadgeProps) {
-  return <span className={`status-badge status-badge--${status}`}>{STATUS_LABELS[status]}</span>
+  return <span className={clsx('status-badge', `status-badge--${status}`)}>{STATUS_LABELS[status]}</span>
 }
 

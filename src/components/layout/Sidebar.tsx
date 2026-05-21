@@ -1,6 +1,7 @@
-﻿import { useEffect, useRef, useState } from 'react'
+import clsx from 'clsx'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from '@tanstack/react-router'
-import { ICON_PATHS } from '../../constants/iconPaths'
+import { ICON_PATHS } from '#constants/iconPaths'
 
 interface NavItem {
   label: string
@@ -57,7 +58,12 @@ export default function Sidebar() {
   }, [])
 
   return (
-    <aside className={`sidebar ${isOpen ? 'is-open' : 'is-collapsed'}`}>
+    <aside
+      className={clsx('sidebar', {
+        'is-open': isOpen,
+        'is-collapsed': !isOpen,
+      })}
+    >
       <div>
         <div className="sidebar__brand">
           {isOpen ? (
@@ -82,7 +88,9 @@ export default function Sidebar() {
               <button
                 key={item.label}
                 type="button"
-                className={`sidebar__nav-item${active ? ' is-active' : ''}`}
+                className={clsx('sidebar__nav-item', {
+                  'is-active': active,
+                })}
                 onClick={() => {
                   if (!item.to) {
                     return
@@ -102,7 +110,9 @@ export default function Sidebar() {
 
       <div className="sidebar__profile-wrap" ref={settingsRef}>
         <button
-          className={`sidebar__profile${isSettingsOpen ? ' is-active' : ''}`}
+          className={clsx('sidebar__profile', {
+            'is-active': isSettingsOpen,
+          })}
           type="button"
           aria-label="Открыть меню пользователя"
           aria-expanded={isSettingsOpen}

@@ -6,6 +6,8 @@
     "module": "ESNext",
     "paths": {
       "#/*": ["./src/*"],
+      "#components/*": ["./src/components/*"],
+      "#constants/*": ["./src/constants/*"],
       "@/*": ["./src/*"]
     },
     "lib": ["ES2022", "DOM", "DOM.Iterable"],

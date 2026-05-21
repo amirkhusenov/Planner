@@ -1,5 +1,6 @@
-﻿import { useState } from 'react'
-import { ICON_PATHS } from '../../constants/iconPaths'
+﻿import clsx from 'clsx'
+import { useState } from 'react'
+import { ICON_PATHS } from '#constants/iconPaths'
 
 interface OverviewItem {
   id: string
@@ -26,7 +27,10 @@ export default function RightSidebar() {
 
   return (
     <aside
-      className={`right-sidebar ${isOpen ? 'is-open' : 'is-collapsed'}`}
+      className={clsx('right-sidebar', {
+        'is-open': isOpen,
+        'is-collapsed': !isOpen,
+      })}
       aria-label="Правая панель"
     >
       <div className="right-sidebar__header">
@@ -112,3 +116,4 @@ export default function RightSidebar() {
     </aside>
   )
 }
+

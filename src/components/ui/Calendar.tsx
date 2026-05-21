@@ -1,6 +1,7 @@
+import clsx from 'clsx'
 import type * as React from 'react'
 import { DayPicker } from 'react-day-picker'
-import { ICON_PATHS } from '../../constants/iconPaths'
+import { ICON_PATHS } from '#constants/iconPaths'
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -15,7 +16,7 @@ export default function Calendar({
     <DayPicker
       showOutsideDays={showOutsideDays}
       navLayout={navLayout}
-      className={['shadcn-calendar', className].filter(Boolean).join(' ')}
+      className={clsx('shadcn-calendar', className)}
       classNames={{
         months: 'shadcn-calendar__months',
         month: 'shadcn-calendar__month',
@@ -38,7 +39,11 @@ export default function Calendar({
       }}
       components={{
         Chevron: ({ orientation }) => (
-          <span className={`shadcn-calendar__chevron${orientation === 'right' ? ' is-next' : ''}`}>
+          <span
+            className={clsx('shadcn-calendar__chevron', {
+              'is-next': orientation === 'right',
+            })}
+          >
             <img src={ICON_PATHS.common.arrow} alt="" aria-hidden="true" />
           </span>
         ),

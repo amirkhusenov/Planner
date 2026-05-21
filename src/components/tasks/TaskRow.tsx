@@ -1,6 +1,7 @@
-﻿import type { DraggableAttributes, SyntheticListenerMap } from '@dnd-kit/core'
+import type { DraggableAttributes, SyntheticListenerMap } from '@dnd-kit/core'
+import clsx from 'clsx'
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
-import { ICON_PATHS } from '../../constants/iconPaths'
+import { ICON_PATHS } from '#constants/iconPaths'
 import type { Task } from '../../types/task'
 import PriorityBadge from './PriorityBadge'
 import StatusBadge from './StatusBadge'
@@ -140,7 +141,12 @@ export default function TaskRow({
     <article
       ref={rowRef}
       style={rowStyle}
-      className={`task-row${isCommentInlineOpen ? ' is-comment-open' : ''}${isCompleted ? ' is-completed' : ''}${isDragging ? ' is-dragging' : ''}${isDragOver ? ' is-drag-over' : ''}`}
+      className={clsx('task-row', {
+        'is-comment-open': isCommentInlineOpen,
+        'is-completed': isCompleted,
+        'is-dragging': isDragging,
+        'is-drag-over': isDragOver,
+      })}
     >
       <input
         ref={fileInputRef}

@@ -1,6 +1,7 @@
 import { useDroppable } from '@dnd-kit/core'
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+import clsx from 'clsx'
 import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import type { Task } from '../../types/task'
 import type { TaskListId } from './taskDnd'
@@ -110,7 +111,7 @@ export default function TaskTable({ tasks, listId, isCompleted = false, onToggle
   return (
     <section
       ref={setNodeRef}
-      className={`tasks-table${isDropTarget ? ' is-drop-target' : ''}`}
+      className={clsx('tasks-table', { 'is-drop-target': isDropTarget })}
       data-task-list-id={listId}
       aria-label="Список задач"
     >

@@ -1,11 +1,12 @@
-﻿import { Plus } from 'lucide-react'
+import clsx from 'clsx'
+import { Plus } from 'lucide-react'
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import PlannerShell from '../components/layout/PlannerShell'
-import Button from '../components/ui/Button'
-import InputField from '../components/ui/InputField'
-import WorkCalendarNav from '../components/ui/WorkCalendarNav'
-import { ICON_PATHS } from '../constants/iconPaths'
+import Button from '#components/ui/Button'
+import InputField from '#components/ui/InputField'
+import WorkCalendarNav from '#components/ui/WorkCalendarNav'
+import { ICON_PATHS } from '#constants/iconPaths'
 
 export const Route = createFileRoute('/goals')({
   component: GoalsPage,
@@ -279,8 +280,21 @@ export default function GoalsPage() {
     }
   }, [isAnyModalOpen])
 
+  useEffect(() => {
+    if (!isAnyModalOpen) {
+      return
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [isAnyModalOpen])
+
   return (
-    <PlannerShell showMobileTop={false}>
+    <PlannerShell showMobileTop>
       <section className="goals-page">
         <header className="goals-header">
           <h1 className="goals-header__title">Цели</h1>
@@ -288,28 +302,28 @@ export default function GoalsPage() {
           <div className="segmented-control" role="tablist" aria-label="Период целей">
             <button
               type="button"
-              className={`segmented-control__item${view === 'all' ? ' is-active' : ''}`}
+              className={clsx('segmented-control__item', { 'is-active': view === 'all' })}
               onClick={() => setView('all')}
             >
               Все
             </button>
             <button
               type="button"
-              className={`segmented-control__item${view === 'week' ? ' is-active' : ''}`}
+              className={clsx('segmented-control__item', { 'is-active': view === 'week' })}
               onClick={() => setView('week')}
             >
               На неделю
             </button>
             <button
               type="button"
-              className={`segmented-control__item${view === 'month' ? ' is-active' : ''}`}
+              className={clsx('segmented-control__item', { 'is-active': view === 'month' })}
               onClick={() => setView('month')}
             >
               На месяц
             </button>
             <button
               type="button"
-              className={`segmented-control__item${view === 'year' ? ' is-active' : ''}`}
+              className={clsx('segmented-control__item', { 'is-active': view === 'year' })}
               onClick={() => setView('year')}
             >
               На год
@@ -346,13 +360,13 @@ export default function GoalsPage() {
 
       <button
         type="button"
-        className={`goals-modal-overlay${isAnyModalOpen ? ' is-open' : ''}`}
+        className={clsx('goals-modal-overlay', { 'is-open': isAnyModalOpen })}
         aria-label="Закрыть модальное окно"
         onClick={closeAllModals}
       />
 
       <section
-        className={`goals-modal${isGoalModalOpen ? ' is-open' : ''}`}
+        className={clsx('goals-modal', { 'is-open': isGoalModalOpen })}
         role="dialog"
         aria-modal="true"
         aria-label="Добавить цель"
@@ -403,7 +417,7 @@ export default function GoalsPage() {
       </section>
 
       <section
-        className={`goals-edit-modal${isEditGoalModalOpen ? ' is-open' : ''}`}
+        className={clsx('goals-edit-modal', { 'is-open': isEditGoalModalOpen })}
         role="dialog"
         aria-modal="true"
         aria-label="Редактировать цель"
@@ -480,21 +494,21 @@ export default function GoalsPage() {
             <div className="segmented-control goals-edit-modal__segments" role="tablist" aria-label="Период статистики цели">
               <button
                 type="button"
-                className={`segmented-control__item${editStatsRange === 'week' ? ' is-active' : ''}`}
+                className={clsx('segmented-control__item', { 'is-active': editStatsRange === 'week' })}
                 onClick={() => setEditStatsRange('week')}
               >
                 Неделя
               </button>
               <button
                 type="button"
-                className={`segmented-control__item${editStatsRange === 'month' ? ' is-active' : ''}`}
+                className={clsx('segmented-control__item', { 'is-active': editStatsRange === 'month' })}
                 onClick={() => setEditStatsRange('month')}
               >
                 Месяц
               </button>
               <button
                 type="button"
-                className={`segmented-control__item${editStatsRange === 'year' ? ' is-active' : ''}`}
+                className={clsx('segmented-control__item', { 'is-active': editStatsRange === 'year' })}
                 onClick={() => setEditStatsRange('year')}
               >
                 Год
@@ -502,7 +516,7 @@ export default function GoalsPage() {
             </div>
           </div>
 
-          <div className="goals-edit-modal__chart" aria-label="Статистика прогресса">
+          <div className={clsx('goals-edit-modal__chart', { 'is-month': editStatsRange === 'month' })} aria-label="Статистика прогресса">
             {editTimeline.map((value, index) => {
               const pointId = `${editingGoal?.id ?? 'goal'}-${editStatsRange}-${index}`
               const relativeHeight = editTimelineMax > 0 ? (value / editTimelineMax) * 100 : 0
@@ -545,7 +559,7 @@ export default function GoalsPage() {
       </section>
 
       <section
-        className={`goals-delete-modal${isDeleteGoalModalOpen ? ' is-open' : ''}`}
+        className={clsx('goals-delete-modal', { 'is-open': isDeleteGoalModalOpen })}
         role="dialog"
         aria-modal="true"
         aria-label="Удалить цель"
@@ -585,3 +599,4 @@ export default function GoalsPage() {
     </PlannerShell>
   )
 }
+

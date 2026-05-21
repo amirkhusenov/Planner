@@ -113,6 +113,10 @@
     padding: 24px 16px 100px;
   }
 
+  .settings-page__title {
+    font-size: 24px;
+  }
+
   .settings-groups {
     margin-top: 28px;
     gap: 40px;
@@ -131,4 +135,5 @@
     min-width: 0;
   }
 }
+
 

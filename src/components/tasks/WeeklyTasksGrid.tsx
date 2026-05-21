@@ -1,5 +1,6 @@
 interface WeeklyTaskCard {
   id: string
+  date: Date
   dayLabel: string
   done: number
   total: number
@@ -30,6 +31,7 @@ function buildWeeklyCards(baseDate: Date): WeeklyTaskCard[] {
     const done = index < 4 ? 11 : 0
     return {
       id: `week-${date.toISOString().slice(0, 10)}`,
+      date,
       dayLabel: dayLabel(date),
       done,
       total: 27,
@@ -39,9 +41,10 @@ function buildWeeklyCards(baseDate: Date): WeeklyTaskCard[] {
 
 interface WeeklyTasksGridProps {
   selectedDate: Date
+  onDaySelect: (date: Date) => void
 }
 
-export default function WeeklyTasksGrid({ selectedDate }: WeeklyTasksGridProps) {
+export default function WeeklyTasksGrid({ selectedDate, onDaySelect }: WeeklyTasksGridProps) {
   const cards = buildWeeklyCards(selectedDate)
 
   return (
@@ -49,13 +52,19 @@ export default function WeeklyTasksGrid({ selectedDate }: WeeklyTasksGridProps) 
       {cards.map((item) => {
         const progress = item.total === 0 ? 0 : Math.max(0, Math.min(100, (item.done / item.total) * 100))
         return (
-          <article key={item.id} className="weekly-task-card">
+          <button
+            key={item.id}
+            type="button"
+            className="weekly-task-card"
+            onClick={() => onDaySelect(item.date)}
+            aria-label={`Open day ${item.dayLabel}`}
+          >
             <h3 className="weekly-task-card__day">{item.dayLabel}</h3>
             <p className="weekly-task-card__meta">{item.done} / {item.total} задач</p>
             <div className="weekly-task-card__track" aria-hidden="true">
               <span className="weekly-task-card__fill" style={{ width: `${progress}%` }} />
             </div>
-          </article>
+          </button>
         )
       })}
     </section>

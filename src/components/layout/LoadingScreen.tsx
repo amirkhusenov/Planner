@@ -1,4 +1,5 @@
-import { ICON_PATHS } from '../../constants/iconPaths'
+﻿import clsx from 'clsx'
+import { ICON_PATHS } from '#constants/iconPaths'
 
 interface LoadingScreenProps {
   progress: number
@@ -7,7 +8,13 @@ interface LoadingScreenProps {
 
 export default function LoadingScreen({ progress, phase }: LoadingScreenProps) {
   return (
-    <section className={`loading-screen ${phase === 'exit' ? 'is-exit' : 'is-enter'}`} aria-label="Загрузка">
+    <section
+      className={clsx('loading-screen', {
+        'is-enter': phase === 'enter',
+        'is-exit': phase === 'exit',
+      })}
+      aria-label="Загрузка"
+    >
       <div className="loading-screen__content">
         <img className="loading-screen__logo" src={ICON_PATHS.sidebar.logo} alt="Planner" />
         <div className="loading-screen__track" aria-hidden="true">

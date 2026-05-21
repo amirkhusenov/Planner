@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { useMemo, useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import PlannerShell from '../components/layout/PlannerShell'
@@ -48,6 +49,7 @@ const RANGE_TABS: { id: ActivityRange; label: string }[] = [
 const WEEKDAY_SHORT_RU = new Intl.DateTimeFormat('ru-RU', { weekday: 'short' })
 const MONTH_SHORT_RU = new Intl.DateTimeFormat('ru-RU', { month: 'short' })
 const MONTH_LONG_RU = new Intl.DateTimeFormat('ru-RU', { month: 'long' })
+const MONTH_CHART_ROW_LENGTH = 12
 
 const GOAL_PROGRESS = 60
 const GOAL_RING_SIZE = 228
@@ -135,6 +137,33 @@ function StatisticsPage() {
   const ringOffset = useMemo(
     () => GOAL_RING_CIRCUMFERENCE * (1 - GOAL_PROGRESS / 100),
     [],
+  )
+
+  const renderChartPoint = (point: ChartPoint) => (
+    <div
+      key={point.id}
+      className="statistics-chart-card__bar-wrap"
+      style={{ height: `${Math.max(8, point.value)}%` }}
+    >
+      <button
+        type="button"
+        className="statistics-chart-card__bar-hit"
+        onMouseEnter={() => setHoveredPointId(point.id)}
+        onMouseLeave={() => setHoveredPointId(null)}
+        onFocus={() => setHoveredPointId(point.id)}
+        onBlur={() => setHoveredPointId(null)}
+        aria-label={`${point.label} - ${point.detail}`}
+      >
+        <span className="statistics-chart-card__bar" />
+      </button>
+
+      {hoveredPointId === point.id ? (
+        <div className="statistics-chart-card__tooltip" role="status" aria-live="polite">
+          <p className="statistics-chart-card__tooltip-label">{point.label}</p>
+          <p className="statistics-chart-card__tooltip-value">{point.detail}</p>
+        </div>
+      ) : null}
+    </div>
   )
 
   return (
@@ -234,7 +263,7 @@ function StatisticsPage() {
                   <button
                     key={tab.id}
                     type="button"
-                    className={`segmented-control__item${range === tab.id ? ' is-active' : ''}`}
+                    className={clsx('segmented-control__item', { 'is-active': range === tab.id })}
                     onClick={() => {
                       setRange(tab.id)
                       setHoveredPointId(null)
@@ -246,33 +275,19 @@ function StatisticsPage() {
               </div>
             </div>
 
-            <div className={`statistics-chart-card__bars statistics-chart-card__bars--${range}`} aria-label="График активности">
-              {ACTIVITY_POINTS[range].map((point) => (
-                <div
-                  key={point.id}
-                  className="statistics-chart-card__bar-wrap"
-                  style={{ height: `${Math.max(8, point.value)}%` }}
-                >
-                  <button
-                    type="button"
-                    className="statistics-chart-card__bar-hit"
-                    onMouseEnter={() => setHoveredPointId(point.id)}
-                    onMouseLeave={() => setHoveredPointId(null)}
-                    onFocus={() => setHoveredPointId(point.id)}
-                    onBlur={() => setHoveredPointId(null)}
-                    aria-label={`${point.label} — ${point.detail}`}
-                  >
-                    <span className="statistics-chart-card__bar" />
-                  </button>
-
-                  {hoveredPointId === point.id ? (
-                    <div className="statistics-chart-card__tooltip" role="status" aria-live="polite">
-                      <p className="statistics-chart-card__tooltip-label">{point.label}</p>
-                      <p className="statistics-chart-card__tooltip-value">{point.detail}</p>
-                    </div>
-                  ) : null}
-                </div>
-              ))}
+            <div className={clsx('statistics-chart-card__bars', `statistics-chart-card__bars--${range}`)} aria-label="График активности">
+              {range === 'month'
+                ? [
+                    ACTIVITY_POINTS.month.slice(0, MONTH_CHART_ROW_LENGTH),
+                    ACTIVITY_POINTS.month.slice(MONTH_CHART_ROW_LENGTH),
+                  ]
+                    .filter((row) => row.length > 0)
+                    .map((row, rowIndex) => (
+                      <div key={`month-row-${rowIndex}`} className="statistics-chart-card__bars-row">
+                        {row.map(renderChartPoint)}
+                      </div>
+                    ))
+                : ACTIVITY_POINTS[range].map(renderChartPoint)}
             </div>
           </article>
         </div>
@@ -280,3 +295,4 @@ function StatisticsPage() {
     </PlannerShell>
   )
 }
+

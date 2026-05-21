@@ -22,7 +22,7 @@ export default function AppLoadingGate({ children }: AppLoadingGateProps) {
       const elapsed = now - startedAt
       const normalized = Math.min(1, elapsed / durationMs)
       const eased = easeOutCubic(normalized)
-      setLoadingProgress(Math.min(100, Math.round(eased * 100)))
+      setLoadingProgress(Math.min(100, eased * 100))
 
       if (normalized < 1) {
         frameId = window.requestAnimationFrame(tick)

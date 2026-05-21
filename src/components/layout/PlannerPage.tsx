@@ -16,13 +16,13 @@ import { Plus } from 'lucide-react'
 import { useState } from 'react'
 import { COMPLETED_TASKS, TODAY_TASKS } from '../../data/todayTasks'
 import type { Task } from '../../types/task'
+import Button from '#components/ui/Button'
 import PlannerShell from './PlannerShell'
 import MonthlyTasksGrid from '../tasks/MonthlyTasksGrid'
 import TaskBoardHeader, { type TaskBoardView } from '../tasks/TaskBoardHeader'
 import TaskTable from '../tasks/TaskTable'
 import { TASK_LIST_IDS, isTaskListId, type TaskListId } from '../tasks/taskDnd'
 import WeeklyTasksGrid from '../tasks/WeeklyTasksGrid'
-import Button from '../ui/Button'
 
 type TaskListsState = Record<TaskListId, Task[]>
 
@@ -213,7 +213,13 @@ export default function PlannerPage() {
       />
 
       {view === 'week' ? (
-        <WeeklyTasksGrid selectedDate={selectedDate} />
+        <WeeklyTasksGrid
+          selectedDate={selectedDate}
+          onDaySelect={(date) => {
+            setSelectedDate(date)
+            setView('day')
+          }}
+        />
       ) : view === 'month' ? (
         <MonthlyTasksGrid
           selectedDate={selectedDate}
